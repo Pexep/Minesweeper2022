@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class Grille extends JPanel{
   private int nombreLigne;
@@ -23,6 +24,17 @@ public class Grille extends JPanel{
         this.add(grille[i][j]);
       }
     }
+    for (int i = 0; i<nombreBombe;){
+      Random n = new Random();
+      int ligne = n.nextInt(nombreLigne);
+      int colonne = n.nextInt(nombreColonne);
+      if (this.grille[ligne][colonne].getBombe()){
+      }else{
+        this.grille[ligne][colonne].setBombe();
+        i++;
+      }
+    }
+
   }
   public int getNombreLigne(){
     return this.nombreLigne;

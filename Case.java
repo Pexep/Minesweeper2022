@@ -49,7 +49,7 @@ public class Case extends JPanel{
     this.bombe=true;
   }
   public int getNombreBombe (){
-    if (this.nombreBombe==-1){
+    if (this.nombreBombe==-1 && this.bombe==false){
       this.nombreBombe=this.countNombreBombe();
     }
     return this.nombreBombe;
@@ -66,7 +66,7 @@ public class Case extends JPanel{
       }
     }
     if (ligneAvant>=0){
-      if (this.grille.getCase(ligneApres,this.colonne).getBombe()){
+      if (this.grille.getCase(ligneAvant,this.colonne).getBombe()){
         count++;
       }
     }
@@ -106,6 +106,18 @@ public class Case extends JPanel{
     return this.hideStatut;
   }
   public void switchStatus (){
-
+    if (this.hideStatut==0){
+      this.remove(0);
+      this.add(new HideSuppose());
+      this.hideStatut++;
+    }else if (this.hideStatut==1) {
+      this.remove(0);
+      this.add(new HideBombe());
+      this.hideStatut++;
+    }else{
+      this.remove(0);
+      this.add(new HideVoid());
+      this.hideStatut=0;
+    }
   }
 }

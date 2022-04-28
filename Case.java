@@ -40,7 +40,17 @@ public class Case extends JPanel{
   public void setCaseVisible (){
     this.visible=true;
     this.remove(0);
-    this.add(new Visible(this.getNombreBombe()));
+    this.nombreBombe=this.countNombreBombe();
+    this.add(new Visible(this.nombreBombe));
+    if (this.nombreBombe==0){
+      int[][] tab = this.getCasesVoisines();
+      for (int i=1; i<=tab[0][0];i++){
+        if (this.grille.getCase(tab[i][0],tab[i][1]).getVisible()){
+        }else{        
+          this.grille.getCase(tab[i][0],tab[i][1]).setCaseVisible();
+        }
+      }
+    }
   }
   public boolean getBombe (){
     return this.bombe;
@@ -49,54 +59,13 @@ public class Case extends JPanel{
     this.bombe=true;
   }
   public int getNombreBombe (){
-    if (this.nombreBombe==-1 && this.bombe==false){
-      this.nombreBombe=this.countNombreBombe();
-    }
     return this.nombreBombe;
   }
   public int countNombreBombe (){
     int count = 0;
-    int ligneAvant = this.ligne-1;
-    int ligneApres = this.ligne+1;
-    int colonneAvant = this.colonne-1;
-    int colonneApres = this.colonne+1;
-    if (ligneAvant>=0 && colonneAvant>=0){
-      if (this.grille.getCase(ligneAvant,colonneAvant).getBombe()){
-        count++;
-      }
-    }
-    if (ligneAvant>=0){
-      if (this.grille.getCase(ligneAvant,this.colonne).getBombe()){
-        count++;
-      }
-    }
-    if (ligneAvant>=0 && colonneApres<this.grille.getNombreColonne()){
-      if (this.grille.getCase(ligneAvant,colonneApres).getBombe()){
-        count++;
-      }
-    }
-    if (colonneApres<this.grille.getNombreColonne()){
-      if (this.grille.getCase(this.ligne,colonneApres).getBombe()){
-        count++;
-      }
-    }
-    if (ligneApres<this.grille.getNombreLigne() && colonneApres<this.grille.getNombreColonne()){
-      if (this.grille.getCase(ligneApres,colonneApres).getBombe()){
-        count++;
-      }
-    }
-    if (ligneApres<this.grille.getNombreLigne()){
-      if (this.grille.getCase(ligneApres,this.colonne).getBombe()){
-        count++;
-      }
-    }
-    if (ligneApres<this.grille.getNombreLigne() && colonneAvant>=0){
-      if (this.grille.getCase(ligneApres,colonneAvant).getBombe()){
-        count++;
-      }
-    }
-    if (colonneAvant>=0){
-      if (this.grille.getCase(this.ligne,colonneAvant).getBombe()){
+    int [][] tab = this.getCasesVoisines();
+    for (int i = 1; i<=tab[0][0];i++){
+      if (this.grille.getCase(tab[i][0],tab[i][1]).getBombe()){
         count++;
       }
     }
@@ -119,5 +88,56 @@ public class Case extends JPanel{
       this.add(new HideVoid());
       this.hideStatut=0;
     }
+  }
+  public int[][] getCasesVoisines(){
+    int[][] tab = new int[9][2];
+    int count = 0;
+    int ligneAvant = this.ligne-1;
+    int ligneApres = this.ligne+1;
+    int colonneAvant = this.colonne-1;
+    int colonneApres = this.colonne+1;
+    if (ligneAvant>=0 && colonneAvant>=0){
+      count++;
+      tab[count][0]=ligneAvant;
+      tab[count][1]=colonneAvant;
+    }
+    if (ligneAvant>=0){
+        count++;
+        tab[count][0]=ligneAvant;
+        tab[count][1]=this.colonne;
+    }
+    if (ligneAvant>=0 && colonneApres<this.grille.getNombreColonne()){
+        count++;
+        tab[count][0]=ligneAvant;
+        tab[count][1]=colonneApres;
+    }
+    if (colonneApres<this.grille.getNombreColonne()){
+        count++;
+        tab[count][0]=this.ligne;
+        tab[count][1]=colonneApres;
+    }
+    if (ligneApres<this.grille.getNombreLigne() && colonneApres<this.grille.getNombreColonne()){
+        count++;
+        tab[count][0]=ligneApres;
+        tab[count][1]=colonneApres;
+    }
+    if (ligneApres<this.grille.getNombreLigne()){
+        count++;
+        tab[count][0]=ligneApres;
+        tab[count][1]=this.colonne;
+    }
+    if (ligneApres<this.grille.getNombreLigne() && colonneAvant>=0){
+        count++;
+        tab[count][0]=ligneApres;
+        tab[count][1]=colonneAvant;
+    }
+    if (colonneAvant>=0){
+        count++;
+        tab[count][0]=this.ligne;
+        tab[count][1]=colonneAvant;
+    }
+    tab[0][0]=count;
+    tab[0][1]=0;
+    return tab;
   }
 }

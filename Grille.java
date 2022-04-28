@@ -54,7 +54,7 @@ public class Grille extends JPanel{
   public int getNombreCaseCachee(){
     return this.nombreCaseCachee;
   }
-  public void setNombrCaseCachee(int nombreCaseCachee){
-    this.nombreCaseCachee=nombreCaseCachee;
+  public void indenteNombrCaseCachee(int nombreCaseCachee){
+    this.nombreCaseCachee--;
   }
 }

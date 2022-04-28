@@ -94,7 +94,7 @@ public class Case extends JPanel{
   public int getHideStatus (){
     return this.hideStatut;
   }
-  public void switchStatus (){
+  public void switchHideStatus (){
     if (this.hideStatut==0){
       this.remove(0);
       this.add(new HideSuppose());

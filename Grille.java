@@ -8,7 +8,7 @@ public class Grille extends JPanel{
   private Case[][] grille;
   private int nombreBombe;
   private int nombreCaseCachee;
-
+  private int nombreBombeSuppose;
   public Grille (int nombreLigne, int nombreColonne, int nombreBombe){
     super();
     this.nombreLigne=nombreLigne;
@@ -54,7 +54,37 @@ public class Grille extends JPanel{
   public int getNombreCaseCachee(){
     return this.nombreCaseCachee;
   }
-  public void indenteNombrCaseCachee(int nombreCaseCachee){
+  public void moinsNombreCaseCachee(){
     this.nombreCaseCachee--;
+  }
+  public void incrementeNombreBombeSuppose(int plus){
+    this.nombreBombeSuppose+=plus;
+  }
+  public void sauverGrille(){
+    System.out.println("Grille sauvée");
+  }
+  public void revelationDefaite(Case origine){
+    for (int i=0;i<nombreLigne;i++){
+      for (int j=0;j<nombreColonne;j++){
+        if (this.grille[i][j].getVisible()){
+        }else{
+          if (this.grille[i][j]==origine){
+            this.grille[i][j].setCaseVisibleDefaite(true);
+          }else{
+            this.grille[i][j].setCaseVisibleDefaite(false);
+          }
+        }
+      }
+    }
+  }
+  public void revelationVictoire(){
+    for (int i=0;i<nombreLigne;i++){
+      for (int j=0;j<nombreColonne;j++){
+        if (this.grille[i][j].getVisible()){
+        }else{
+          this.grille[i][j].setCaseVisibleVictoire();
+        }
+      }
+    }
   }
 }

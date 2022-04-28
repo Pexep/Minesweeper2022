@@ -42,15 +42,35 @@ public class Case extends JPanel{
     this.remove(0);
     this.nombreBombe=this.countNombreBombe();
     this.add(new Visible(this.nombreBombe));
+    this.grille.moinsNombreCaseCachee();
     if (this.nombreBombe==0){
       int[][] tab = this.getCasesVoisines();
       for (int i=1; i<=tab[0][0];i++){
         if (this.grille.getCase(tab[i][0],tab[i][1]).getVisible()){
-        }else{        
+        }else{
           this.grille.getCase(tab[i][0],tab[i][1]).setCaseVisible();
         }
       }
     }
+  }
+  public void setCaseVisibleDefaite(boolean origine){
+    if (origine){
+      this.remove(0);
+      this.add(new DefaiteOrigine());
+    }else if (this.bombe && this.hideStatut==0){
+      this.remove(0);
+      this.add(new DefaiteNonSuppose());
+    }else if (this.bombe==false && this.hideStatut!=0){
+      this.remove(0);
+      this.add(new DefaiteSuppose());
+    }else if (this.bombe && this.hideStatut!=0) {
+      this.remove(0);
+      this.add(new GoodSuppose());
+    }
+  }
+  public void setCaseVisibleVictoire(){
+    this.remove(0);
+    this.add(new GoodSuppose());
   }
   public boolean getBombe (){
     return this.bombe;
@@ -83,10 +103,12 @@ public class Case extends JPanel{
       this.remove(0);
       this.add(new HideBombe());
       this.hideStatut++;
+      this.grille.incrementeNombreBombeSuppose(1);
     }else{
       this.remove(0);
       this.add(new HideVoid());
       this.hideStatut=0;
+      this.grille.incrementeNombreBombeSuppose(-1);
     }
   }
   public int[][] getCasesVoisines(){

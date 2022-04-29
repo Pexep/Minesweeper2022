@@ -11,8 +11,9 @@ public class Case extends JPanel{
   private int nombreBombe;
   /*0 : void; 1 : suppose; 2 : bombe*/
   private int hideStatut;
+  private ClickOnCase caseListener;
 
-  public Case (Grille grille, int ligne, int colonne){
+  public Case (Grille grille, int ligne, int colonne, JFrame fenetre){
     super();
     this.grille=grille;
     this.ligne=ligne;
@@ -24,6 +25,8 @@ public class Case extends JPanel{
     GridLayout pause = new GridLayout(1,1);
     this.setLayout(pause);
     this.add(new HideVoid());
+    this.caseListener=new ClickOnCase(fenetre);
+    this.addMouseListener(this.caseListener);
   }
   public Grille getGrille (){
     return this.grille;
@@ -43,6 +46,7 @@ public class Case extends JPanel{
     this.nombreBombe=this.countNombreBombe();
     this.add(new Visible(this.nombreBombe));
     this.grille.moinsNombreCaseCachee();
+    this.removeMouseListener(this.caseListener);
     if (this.nombreBombe==0){
       int[][] tab = this.getCasesVoisines();
       for (int i=1; i<=tab[0][0];i++){
@@ -57,20 +61,30 @@ public class Case extends JPanel{
     if (origine){
       this.remove(0);
       this.add(new DefaiteOrigine());
+      this.visible=true;
+      this.removeMouseListener(this.caseListener);
     }else if (this.bombe && this.hideStatut==0){
       this.remove(0);
       this.add(new DefaiteNonSuppose());
+      this.visible=true;
+      this.removeMouseListener(this.caseListener);
     }else if (this.bombe==false && this.hideStatut!=0){
       this.remove(0);
       this.add(new DefaiteSuppose());
+      this.visible=true;
+      this.removeMouseListener(this.caseListener);
     }else if (this.bombe && this.hideStatut!=0) {
       this.remove(0);
       this.add(new GoodSuppose());
+      this.visible=true;
+      this.removeMouseListener(this.caseListener);
     }
   }
   public void setCaseVisibleVictoire(){
     this.remove(0);
     this.add(new GoodSuppose());
+    this.visible=true;
+    this.removeMouseListener(this.caseListener);
   }
   public boolean getBombe (){
     return this.bombe;

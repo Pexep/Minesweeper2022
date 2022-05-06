@@ -10,7 +10,8 @@ public class Grille extends JPanel{
   private int nombreCaseCachee;
   private int nombreBombeSuppose;
   private boolean grilleFinie;
-  public Grille (int nombreLigne, int nombreColonne, int nombreBombe, JFrame fenetre){
+  private JFrame fenetre;
+  public Grille (int nombreLigne, int nombreColonne, int nombreBombe, Partie partie){
     super();
     this.nombreLigne=nombreLigne;
     this.nombreColonne=nombreColonne;
@@ -21,7 +22,7 @@ public class Grille extends JPanel{
     this.setLayout(pause);
     for (int i=0;i<nombreLigne;i++){
       for (int j=0;j<nombreColonne;j++){
-        this.grille[i][j]=new Case(this,i,j,fenetre);
+        this.grille[i][j]=new Case(this,i,j,partie);
         this.add(grille[i][j]);
       }
     }
@@ -37,7 +38,7 @@ public class Grille extends JPanel{
     }
     this.nombreBombeSuppose=0;
     this.grilleFinie=false;
-
+    this.fenetre=partie.getFenetre();
   }
   public int getNombreLigne(){
     return this.nombreLigne;
@@ -60,6 +61,9 @@ public class Grille extends JPanel{
   public void moinsNombreCaseCachee(){
     this.nombreCaseCachee--;
   }
+  public int getNombreBombeSuppose(){
+    return this.nombreBombeSuppose;
+  }
   public void incrementeNombreBombeSuppose(int plus){
     this.nombreBombeSuppose+=plus;
   }
@@ -67,7 +71,6 @@ public class Grille extends JPanel{
     System.out.println("Grille sauvée");
   }
   public void revelationDefaite(Case origine){
-    this.grilleFinie=true;
     for (int i=0;i<nombreLigne;i++){
       for (int j=0;j<nombreColonne;j++){
         if (this.grille[i][j].getVisible()){
@@ -80,9 +83,10 @@ public class Grille extends JPanel{
         }
       }
     }
+    this.grilleFinie=true;
+    SwingUtilities.updateComponentTreeUI(this.fenetre);
   }
   public void revelationVictoire(){
-    this.grilleFinie=true;
     for (int i=0;i<nombreLigne;i++){
       for (int j=0;j<nombreColonne;j++){
         if (this.grille[i][j].getVisible()){
@@ -91,6 +95,8 @@ public class Grille extends JPanel{
         }
       }
     }
+    this.grilleFinie=true;
+    SwingUtilities.updateComponentTreeUI(this.fenetre);
   }
   public boolean getGrilleFinie(){
     return this.grilleFinie;

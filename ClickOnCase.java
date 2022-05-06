@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.time.*;
 
 public class ClickOnCase implements MouseListener{
-  private JFrame fenetre;
-  public ClickOnCase (JFrame fenetre){
-    this.fenetre=fenetre;
+  private Partie partie;
+  public ClickOnCase (Partie partie){
+    this.partie=partie;
   }
 
   public void mouseClicked (MouseEvent event){
@@ -20,18 +21,20 @@ public class ClickOnCase implements MouseListener{
         }else {
           if (case1.getBombe()){
             case1.getGrille().revelationDefaite(case1);
-            //perdu
+            this.partie.partieFinie(false);
           }else{
             case1.setCaseVisible();
             if (case1.getGrille().getNombreCaseCachee()==case1.getGrille().getNombreBombe()){
               case1.getGrille().revelationVictoire();
+              this.partie.partieFinie(true);
             }
           }
         }
       }else if (event.getButton()==MouseEvent.BUTTON3){
         case1.switchHideStatus();
+        this.partie.changeNombreSuppose();
       }
-      SwingUtilities.updateComponentTreeUI(fenetre);      
+      SwingUtilities.updateComponentTreeUI(this.partie.getFenetre());
     }
   }
   public void mouseEntered (MouseEvent event){

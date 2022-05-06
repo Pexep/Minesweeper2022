@@ -13,7 +13,7 @@ public class Case extends JPanel{
   private int hideStatut;
   private ClickOnCase caseListener;
 
-  public Case (Grille grille, int ligne, int colonne, JFrame fenetre){
+  public Case (Grille grille, int ligne, int colonne, Partie partie){
     super();
     this.grille=grille;
     this.ligne=ligne;
@@ -25,7 +25,7 @@ public class Case extends JPanel{
     GridLayout pause = new GridLayout(1,1);
     this.setLayout(pause);
     this.add(new HideVoid());
-    this.caseListener=new ClickOnCase(fenetre);
+    this.caseListener=new ClickOnCase(partie);
     this.addMouseListener(this.caseListener);
   }
   public Grille getGrille (){

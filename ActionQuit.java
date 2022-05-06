@@ -8,7 +8,7 @@ public class ActionQuit implements ActionListener{
     this.partie=partie;
   }
   public void actionPerformed(ActionEvent evenement){
-    if (this.partie.getGrille().grilleFinie()){
+    if (this.partie.getGrille().getGrilleFinie()){
     }else{
     this.partie.getGrille().sauverGrille();
     }

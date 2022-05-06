@@ -16,7 +16,7 @@ public class WindowQuit implements WindowListener{
 
   @Override
   public void windowClosing(WindowEvent event){
-    if (this.partie.getGrille().grilleFinie()){
+    if (this.partie.getGrille().getGrilleFinie()){
     }else{
       this.partie.getGrille().sauverGrille();
     }

@@ -8,7 +8,10 @@ public class ActionQuit implements ActionListener{
     this.partie=partie;
   }
   public void actionPerformed(ActionEvent evenement){
-    partie.getGrille().sauverGrille();
+    if (this.partie.getGrille().grilleFinie()){
+    }else{
+    this.partie.getGrille().sauverGrille();
+    }
     System.out.println("Quit");
     partie.getFenetre().dispose();
   }

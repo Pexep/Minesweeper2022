@@ -10,7 +10,7 @@ public class Visible extends FondCase {
   @Override
   protected void paintComponent (Graphics pinceau){
     Graphics secondPinceau = pinceau.create();
-    this.setFondCase(secondPinceau,new Color(211,211,211));
+    this.setFondCase(secondPinceau,new Color(169,169,169));
     if (this.nombreBombe!=0){
       int min = Math.min(this.getWidth(),this.getHeight());
       int max = Math.max(this.getWidth(),this.getHeight());

@@ -6,7 +6,7 @@ public class HideCase extends FondCase {
     super();
   }
   public void paintCase (Graphics pinceau, String caractere){
-    this.setFondCase(pinceau,new Color(128,128,128));
+    this.setFondCase(pinceau,new Color(105,105,105));
     int min = Math.min(this.getWidth(),this.getHeight());
     int max = Math.max(this.getWidth(),this.getHeight());
     pinceau.setFont(new Font("style",Font.PLAIN,Math.round(min/2)));

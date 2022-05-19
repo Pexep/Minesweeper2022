@@ -20,7 +20,6 @@ public class WindowQuit implements WindowListener{
     }else{
       this.partie.getGrille().sauverGrille();
     }
-    System.out.println("Quit");
     event.getWindow().dispose();
   }
 

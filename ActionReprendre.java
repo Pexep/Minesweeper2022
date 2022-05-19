@@ -8,6 +8,12 @@ public class ActionReprendre implements ActionListener{
     this.menu=menu;
   }
   public void actionPerformed(ActionEvent evenement){
+    this.menu.getFenetre().setVisible(false);
+    JFrame fenetre = this.menu.getFenetre();
+    fenetre.remove(menu);
+    fenetre.revalidate();
+    fenetre.add(new Partie(fenetre));
+    this.menu.getFenetre().setVisible(true);
     System.out.println("Reprendre");
   }
 }

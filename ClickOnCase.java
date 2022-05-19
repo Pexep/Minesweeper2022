@@ -17,6 +17,7 @@ public class ClickOnCase implements MouseListener{
         if (case1.getHideStatus()!=0){
           while(case1.getHideStatus()!=0){
             case1.switchHideStatus();
+            this.partie.changeNombreSuppose();
           }
         }else {
           if (case1.getBombe()){

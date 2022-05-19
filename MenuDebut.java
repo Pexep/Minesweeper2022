@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class MenuDebut extends Disposition{
   public MenuDebut(JFrame fenetre){
@@ -25,6 +26,27 @@ public class MenuDebut extends Disposition{
       }else{
         this.add(panneau);
       }
+    }
+    try{
+      FileInputStream fichier = new FileInputStream("save.bin");
+      DataInputStream fis = new DataInputStream(fichier);
+      try{
+        if (fis.readBoolean()){
+        }else{
+          bouttonReprendre.setEnabled(false);
+
+        }
+      }catch (IOException e){
+        System.err.println("Erreur d'écriture de la grille !");
+      }
+      try{
+        fis.close();
+      }catch (IOException e){
+        System.err.println("Erreur de fermeture !");
+      }
+    }catch (IOException e){
+      System.err.println("Erreur d'ouverture !");
+      bouttonReprendre.setEnabled(false);
     }
   }
 }

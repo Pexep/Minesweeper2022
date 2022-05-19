@@ -12,7 +12,6 @@ public class ActionQuit implements ActionListener{
     }else{
     this.partie.getGrille().sauverGrille();
     }
-    System.out.println("Quit");
     partie.getFenetre().dispose();
   }
 }

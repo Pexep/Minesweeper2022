@@ -9,11 +9,20 @@ public class Partie extends Disposition{
   private JButton bouttonRejouer;
   public Partie (JFrame fenetre, int[] choix){
     super (fenetre);
-    fenetre.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-    fenetre.setSize(800,800);
-    fenetre.addWindowListener(new WindowQuit(this));
-	  this.setLayout(new GridBagLayout());
     this.grille = new Grille(choix[0],choix[1],choix[2],this);
+    this.initialisationPartie();
+  }
+  public Partie (JFrame fenetre){
+    super (fenetre);
+    this.grille = new Grille(this);
+    this.initialisationPartie();
+
+  }
+  public void initialisationPartie (){
+    this.fenetre.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+    this.fenetre.setSize(800,800);
+    this.fenetre.addWindowListener(new WindowQuit(this));
+    this.setLayout(new GridBagLayout());
   	GridBagConstraints gridConstraints = new GridBagConstraints();
   	gridConstraints.fill = GridBagConstraints.BOTH;
     gridConstraints.gridx = 0;
@@ -43,7 +52,7 @@ public class Partie extends Disposition{
     this.bouttonRejouer.addActionListener(new ActionChoix(this));
     this.bouttonRejouer.setVisible(false);
 
-    this.nombreSuppose = new JLabel("Bombes restantes : "+this.grille.getNombreBombe());
+    this.nombreSuppose = new JLabel("Bombes restantes : "+(this.grille.getNombreBombe()-this.grille.getNombreBombeSuppose()));
     this.nombreSuppose.setHorizontalTextPosition(JLabel.CENTER);
     this.nombreSuppose.setVerticalTextPosition(JLabel.CENTER);
     this.nombreSuppose.setHorizontalAlignment(JLabel.CENTER);

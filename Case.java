@@ -22,9 +22,36 @@ public class Case extends JPanel{
     this.bombe=false;
     this.nombreBombe=-1;
     this.hideStatut=0;
-    GridLayout pause = new GridLayout(1,1);
-    this.setLayout(pause);
+    GridLayout pose = new GridLayout(1,1);
+    this.setLayout(pose);
     this.add(new HideVoid());
+    this.caseListener=new ClickOnCase(partie);
+    this.addMouseListener(this.caseListener);
+  }
+  public Case (Grille grille, int ligne, int colonne, boolean visible, boolean bombe, int nombreBombe, int hideStatut, Partie partie){
+    super();
+    this.grille=grille;
+    this.ligne=ligne;
+    this.colonne=colonne;
+    this.visible=visible;
+    this.bombe=bombe;
+    this.nombreBombe=nombreBombe;
+    this.hideStatut=hideStatut;
+    GridLayout pose = new GridLayout(1,1);
+    this.setLayout(pose);
+    if (visible){
+      this.add(new Visible(nombreBombe));
+    }else{
+      if (hideStatut==0){
+        this.add(new HideVoid());
+      }
+      if (hideStatut==1){
+        this.add(new HideSuppose());
+      }
+      if (hideStatut==2){
+        this.add(new HideBombe());
+      }
+    }
     this.caseListener=new ClickOnCase(partie);
     this.addMouseListener(this.caseListener);
   }

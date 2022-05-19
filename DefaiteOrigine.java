@@ -1,10 +1,22 @@
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * La classe <code>DefaiteOrigine</code> est un composant graphique qui sert à dessiner une case. Ici, la case minée qui est à l'origine de la défaite.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class DefaiteOrigine extends FondCase {
+    /**
+   * Le constructeur. Un nouveau dessin de case minée à l'origine de la défaite.
+  */
   public DefaiteOrigine (){
     super();
   }
+
+  /**
+   * Dessine une case minée qui est à l'origine de la défaite.
+   * @param pinceau le context graphique
+  */
   @Override
   protected void paintComponent (Graphics pinceau){
     Graphics secondPinceau = pinceau.create();

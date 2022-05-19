@@ -1,10 +1,22 @@
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * La classe <code>GoodSuppose</code> est un composant graphique qui sert à dessiner une case. Ici, une case minée et supposée minée, après révélation d'une grille.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class GoodSuppose extends FondCase {
+  /**
+   * Le constructeur. Un nouveau dessin de case minée et supposée minée.
+  */
   public GoodSuppose (){
     super();
   }
+
+  /**
+   * Dessine une case minée et supposée minée à la révélation d'une grille.
+   * @param pinceau le context graphique
+  */
   @Override
   protected void paintComponent (Graphics pinceau){
     Graphics secondPinceau = pinceau.create();

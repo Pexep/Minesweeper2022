@@ -1,10 +1,23 @@
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * La classe <code>HideCase</code> est un composant graphique qui sert de base pour les cases cachées.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class HideCase extends FondCase {
+  /**
+   * Le constructeur. Une nouvelle base de case cachée.
+  */
   public HideCase (){
     super();
   }
+
+  /**
+   * Dessine une case cachée.
+   * @param pinceau le context graphique
+   * @param caractere le marqueur à afficher sur la case cachée. 
+  */
   public void paintCase (Graphics pinceau, String caractere){
     this.setFondCase(pinceau,new Color(105,105,105));
     int min = Math.min(this.getWidth(),this.getHeight());

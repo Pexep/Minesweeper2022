@@ -1,10 +1,22 @@
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * La classe <code>DefaiteSuppose</code> est un composant graphique qui sert à dessiner une case. Ici, une case non minée et supposée minée, après révélation d'une grille.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class DefaiteSuppose extends FondCase {
+  /**
+   * Le constructeur. Un nouveau dessin de case non minée et supposée minée.
+  */
   public DefaiteSuppose (){
     super();
   }
+
+  /**
+   * Dessine une case non minée et supposée minée à la révélation d'une grille.
+   * @param pinceau le context graphique
+  */
   @Override
   protected void paintComponent (Graphics pinceau){
     Graphics secondPinceau = pinceau.create();

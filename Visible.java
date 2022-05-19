@@ -1,12 +1,29 @@
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ * La classe <code>Visible</code> est un composant graphique qui sert à dessiner une case. Ici, une case révélée contenant le nombre de cases environnantes minées.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class Visible extends FondCase {
+  /**
+   * Le nombre de cases environnantes minées.
+  */
   private int nombreBombe;
+
+  /**
+   * Le constructeur. Un nouveau dessin de case révélée.
+   * @param nombreBombe le nombre de cases environnantes minées
+  */
   public Visible (int nombreBombe){
     super();
     this.nombreBombe=nombreBombe;
   }
+
+  /**
+   * Dessine une case révélée contenant le nombre de cases environnantes minées.
+   * @param pinceau le context graphique
+  */
   @Override
   protected void paintComponent (Graphics pinceau){
     Graphics secondPinceau = pinceau.create();

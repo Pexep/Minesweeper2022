@@ -1,8 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-
+/**
+ * La classe <code>MenuDebut</code> est la disposition du menu d'accueil.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class MenuDebut extends Disposition{
+  /**
+   * Le constructeur. Crée un nouveau menu d'accueil.
+   * @param fenetre la fenêtre dans laquelle se trouve le menu
+  */
   public MenuDebut(JFrame fenetre){
     super(fenetre);
     fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

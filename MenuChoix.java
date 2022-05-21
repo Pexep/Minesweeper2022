@@ -1,14 +1,45 @@
 import javax.swing.*;
 import java.awt.*;
-
+/**
+ * La classe <code>MenuChoix</code> est la disposition du menu de choix pour la création d'une nouvelle partie.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class MenuChoix extends Disposition{
+  /**
+   * Le message d'erreur en cas d'un mauvais nombre de lignes.
+  */
   private JLabel erreurLignes;
+
+  /**
+   * Le message d'erreur en cas d'un mauvais nombre de colonnes.
+  */
   private JLabel erreurColonnes;
+
+  /**
+   * Le message d'erreur en cas d'un mauvais nombre de bombes.
+  */
   private JLabel erreurBombes;
+
+  /**
+   * L'entrée pour le nombre de lignes.
+  */
   private JTextField nombreLignes;
+
+  /**
+   * L'entrée pour le nombre de colonnes.
+  */
   private JTextField nombreColonnes;
+
+  /**
+   * L'entrée pour le nombre de bombes.
+  */
   private JTextField nombreBombes;
 
+  /**
+   * Les constructeur. Crée un nouveau menu de choix pour la création d'une nouvelle partie.
+   * @param fenetre la fenêtre dans laquelle se trouve le menu
+  */
   public MenuChoix(JFrame fenetre){
     super(fenetre);
     fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +98,11 @@ public class MenuChoix extends Disposition{
     this.add(panneauBoutton);
     this.add(new JPanel());
   }
+
+  /**
+   * Vérifie si les nombres rentrés sont bons. Le cas échéant, un tableau contenant le nombre de lignes, de colonnes et de bombes est envoyé. La cas contraire, affiche les messages d'erreur adaptés et renvoie un tableau erroné.
+   * @param int[] un tableau contenant le nombre de lignes, de colonnes et de bombes si les entrées sont conformes
+  */
   public int[] getChoix(){
     int[] choix = new int [3];
     int nombreLignes;

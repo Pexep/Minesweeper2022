@@ -1,23 +1,57 @@
 import javax.swing.*;
 import java.awt.*;
 import java.lang.Math;
-
+/**
+ * La classe <code>Partie</code> est la disposition de la partie.
+ * @version 1.1
+ * @author Mathis Chaigneau
+*/
 public class Partie extends Disposition{
+  /**
+   * La Grille présente dans la partie.
+  */
   private Grille grille;
+
+  /**
+   * Le message du nombre de bombes restantes.
+  */
   private JLabel nombreSuppose;
+
+  /**
+   * Le message de fin de partie.
+  */
   private JLabel messageFin;
+
+  /**
+   * Le bouton "Rejouer" affiché en fin de partie.
+  */
   private JButton bouttonRejouer;
+
+  /**
+   * Le constructeur. Crée une nouvelle partie à partir des choix de l'utilisateur.
+   * @param fenetre la fenêtre dans laquelle se trouve la partie
+   * @param choix le tableau contenant le nombre de lignes, de colonnes et de bombes
+  */
   public Partie (JFrame fenetre, int[] choix){
     super (fenetre);
     this.grille = new Grille(choix[0],choix[1],choix[2],this);
     this.initialisationPartie();
   }
+
+  /**
+   * Le constructeur. Crée une nouvelle partie à partir de la sauvegarde de la dernière partie.
+   * @param fenetre la fenêtre dans laquelle se trouve la partie
+  */
   public Partie (JFrame fenetre){
     super (fenetre);
     this.grille = new Grille(this);
     this.initialisationPartie();
 
   }
+
+  /**
+   * Une méthode qui crée le gros de la disposition de la partie.
+  */
   public void initialisationPartie (){
     this.fenetre.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     this.fenetre.setSize(800,800);
@@ -106,9 +140,19 @@ public class Partie extends Disposition{
     panneauFin.add(new JPanel());
 
   }
+
+  /**
+   * Renvoie la grille présente dans la partie.
+   * @return Grille la grille présente dans la partie
+  */
   public Grille getGrille(){
     return this.grille;
   }
+
+  /**
+   * Affiche le message de fin de partie et le bouton "Rejouer".
+   * @param boolean la victoire du joueur
+  */
   public void partieFinie(boolean victoire){
     this.bouttonRejouer.setVisible(true);
     if (victoire){
@@ -117,6 +161,10 @@ public class Partie extends Disposition{
       this.messageFin.setText("Vous avez échoué en faisant exploser une bombe !");
     }
   }
+
+  /**
+   * Actualise l'affichage du nombre de bombes restantes.
+  */
   public void changeNombreSuppose(){
     this.nombreSuppose.setText("Bombes restantes : "+(this.grille.getNombreBombe()-this.grille.getNombreBombeSuppose()));
   }

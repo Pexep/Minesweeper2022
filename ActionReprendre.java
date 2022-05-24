@@ -31,6 +31,5 @@ public class ActionReprendre implements ActionListener{
     fenetre.revalidate();
     fenetre.add(new Partie(fenetre));
     this.menu.getFenetre().setVisible(true);
-    System.out.println("Reprendre");
   }
 }
